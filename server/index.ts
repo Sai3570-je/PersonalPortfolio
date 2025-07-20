@@ -52,11 +52,11 @@ app.use((req, res, next) => {
   } else {
     serveStatic(app);
   }
+const port = parseInt(process.env.PORT || "5000", 10);
 
-  const port = parseInt(process.env.PORT || "5000", 10);
+// ---- Use this listen line for Railway compatibility ---
+server.listen(port, "0.0.0.0", () => {
+  log(`✅ Server running on http://localhost:${port}`);
+});
 
-  // ✅ Fixed: Use normal listen() without options object
-  server.listen(port, () => {
-    log(`✅ Server running on http://localhost:${port}`);
-  });
 })();
